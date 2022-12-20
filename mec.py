@@ -15,6 +15,7 @@ class MEC(nn.Module):
 
     def forward(self, view1, view2):
         # view1 and view2 are two views (representations) of the same batch, with shape (B, E).
+        # It's worth noting that both representations should be normalized (for example, l2 normalization).
         if self.feature_wise:
             c = self.lamda * torch.mm(view1.transpose(0, 1), view2)  # (E, E)
         else:
